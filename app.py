@@ -111,31 +111,5 @@ def m_tobs():
 
     return jsonify(temp_dict)
 
-
-
-@app.route("/api/v1.0/<start>)
-def date_start():
-    # Create our session (link) from Python to the DB
-    session = Session(engine)
-
-    """Return a JSON list of stations from the dataset"""
-def calc_temps(start_date):
-    """TMIN, TAVG, and TMAX for a list of dates.
-    
-    Args:
-        start_date (string): A date string in the format %Y-%m-%d
-        end_date (string): A date string in the format %Y-%m-%d
-        
-    Returns:
-        TMIN, TAVE, and TMAX
-    """
-    
-    return session.query(func.min(Measurement.tobs), func.avg(Measurement.tobs), func.max(Measurement.tobs)).\
-        filter(Measurement.date >= start_date)all()
-
-    session.close()
-
-    return jsonify(calc_temps(<start_date>))
-
 if __name__ == '__main__':
     app.run(debug=True)
